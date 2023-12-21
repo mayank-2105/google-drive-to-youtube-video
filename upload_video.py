@@ -17,6 +17,7 @@ import google_auth_oauthlib.flow
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 from googleapiclient.http import MediaFileUpload
+from oauth2client.file import Storage
 from oauth2client.client import flow_from_clientsecrets
 
 
