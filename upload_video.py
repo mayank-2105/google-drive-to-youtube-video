@@ -59,21 +59,19 @@ VALID_PRIVACY_STATUSES = ('public', 'private', 'unlisted')
 
 
 # Authorize the request and store authorization credentials.
-def get_authenticated_service():
-    
-
+def get_authenticated_service(args):
   flow = flow_from_clientsecrets(CLIENT_SECRETS_FILE,
-      scope=YOUTUBE_UPLOAD_SCOPE,
-      message=MISSING_CLIENT_SECRETS_MESSAGE)
-  
-    storage = Storage("%s-oauth2.json" % sys.argv[0])
-    credentials = storage.get()
-  
-    if credentials is None or credentials.invalid:
-      credentials = run_flow(flow, storage, args)
-  
-    return build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION,
-      http=credentials.authorize(httplib2.Http()))
+    scope=YOUTUBE_UPLOAD_SCOPE,
+    message=MISSING_CLIENT_SECRETS_MESSAGE)
+
+  storage = Storage("%s-oauth2.json" % sys.argv[0])
+  credentials = storage.get()
+
+  if credentials is None or credentials.invalid:
+    credentials = run_flow(flow, storage, args)
+
+  return build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION,
+    http=credentials.authorize(httplib2.Http()))
 
 
 def initialize_upload(youtube, options):
