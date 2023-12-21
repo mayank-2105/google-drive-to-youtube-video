@@ -165,7 +165,7 @@ if __name__ == '__main__':
                         default='private', help='Video privacy status.')
     args = parser.parse_args()
 
-    youtube = get_authenticated_service()
+    youtube = get_authenticated_service(args)
 
     try:
         initialize_upload(youtube, args)
