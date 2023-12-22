@@ -113,7 +113,7 @@ def initialize_upload(youtube, options):
     )
 
     # Call the API's videos.insert method to create and upload the video.
-    insert_request = youtube.videos().update(
+    insert_request = youtube.videos().insert(
         part=','.join(body.keys()),
         body=body,
         # The chunksize parameter specifies the size of each chunk of data, in
